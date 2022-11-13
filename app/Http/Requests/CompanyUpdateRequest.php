@@ -25,8 +25,8 @@ class CompanyUpdateRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'id'    => 'required|integer|exists:contacts',
             'name'  => 'required',
             'year_founded' => 'nullable|integer',
             'street_address' => 'nullable|max:50',
@@ -42,7 +42,6 @@ class CompanyUpdateRequest extends FormRequest
     {
 
         return [
-            'id.exists' => 'Company with the ID does not exist',
             'name.required' => 'name is required',
             'year_founded.integer' => 'Year found  must be integer',
             'street_address.max' => 'Street address must exceed 50 characters',

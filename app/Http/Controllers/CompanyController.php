@@ -88,8 +88,8 @@ class CompanyController extends Controller
     public function update(CompanyUpdateRequest $request, $id)
     {
         //
-
-        $updateCompany = Company::find($request->id);
+        $updateCompany = Company::findorFail($id);
+        
         $updateCompany->name = $request->name;
         $updateCompany->year_founded = $request->year_founded;
         $updateCompany->street_address = $request->street_address;
@@ -99,7 +99,7 @@ class CompanyController extends Controller
         $updateCompany->country = $request->country;
         $updateCompany->update();
 
-        if($newContact){
+        if($updateCompany){
             return response()->json(['success'  =>  true, 'message' => 'Record updated.']);  
 
         }else{

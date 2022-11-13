@@ -26,7 +26,6 @@ class ContactUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'    => 'required|integer|exists:contacts',
             'first_name' => 'required',
             'last_name' => 'required',
             'position' => 'required',
@@ -42,7 +41,6 @@ class ContactUpdateRequest extends FormRequest
 
         return [
 
-            'id.exists' => 'Contact ID is does not exist',
             'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
             'position.required' => 'Contact position is required',

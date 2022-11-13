@@ -71,16 +71,15 @@ class ContactController extends Controller
     public function update(ContactUpdateRequest $request, $id)
     {
         //
-
-        $updateContact =  Contact::find($request->id);
+        $updateContact =  Contact::findorFail($id);
         $updateContact->first_name  = $request->first_name;
         $updateContact->last_name  = $request->last_name;
         $updateContact->position  = $request->position;
         $updateContact->email  = $request->email;
-        $$updateContact->mobile_no  = $request->mobile_no;
+        $updateContact->mobile_no  = $request->mobile_no;
         $updateContact->update();
 
-        if($newContact){
+        if($updateContact){
             return response()->json(['success'  =>  true, 'message' => 'Record updated.']);  
 
         }else{
@@ -99,10 +98,11 @@ class ContactController extends Controller
     {
         //
         if ($request->filled('keyword')) {
-            ContactResource::collection(Contact::where('first_name', 'LIKE', '%' . $request->keyword . '%')
-                                                ->orWhere('last_name', 'LIKE', '%' . $request->keyword . '%')
-                                                ->worWhereHas('company', function ($query) {
-                                                            $query->where('name', 'like', '%' . $request->keyword . '%');
+            
+           return ContactResource::collection(Contact::where('first_name', 'LIKE', '%$request->keyword%')
+                                                ->orWhere('last_name', 'LIKE', '%$request->keyword%')
+                                                ->orWhereHas('company', function ($query) {
+                                                            $query->where('name', 'like', '%$keyword%');
                                                 })->get());
         }else{
             return response()->json(['success'  =>  false,  'message' => 'No keyword search', 'data'=>[]]);  
