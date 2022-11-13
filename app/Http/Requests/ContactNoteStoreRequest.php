@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class ContactNoteStoreRequest extends FormRequest
 {
@@ -40,7 +42,7 @@ class ContactNoteStoreRequest extends FormRequest
 
             'contact_id.required' => 'Contact ID is required',
             'contact_id.integer' => 'Contact ID must be integer',
-            'contact_id.exists' => 'Contact ID is does not exist',
+            'contact_id.exists' => 'Contact ID does not exist',
             'note.required' => 'Note is required',
         ];
 

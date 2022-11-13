@@ -45,7 +45,7 @@ class ContactStoreRequest extends FormRequest
 
             'company_id.required' => 'Company ID is required',
             'company_id.integer' => 'Company ID must be integer',
-            'company_id.exists' => 'Company ID is does not exist',
+            'company_id.exists' => 'Company ID does not exist',
             'first_name.required' => 'First name is required',
             'last_name.required' => 'Last name is required',
             'position.required' => 'Contact position is required',
