@@ -8,7 +8,7 @@
 </p>
 
 ## How to install
-- clone the git repo into into your local machine
+- clone the git repo into your local machine
 - Inside the app directory, change the path of the DB_DATABASE in the .env file to the abolsute path of database.sqlite (SQLite is used)
 - run composer install inside the app  directory
 - run ‘php artisan migrate’  inside the app  directory

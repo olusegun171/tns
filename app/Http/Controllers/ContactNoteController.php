@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactNotes;
+use  App\Http\Requests\ContactNoteStoreRequest;
+use  App\Http\Requests\ContactNoteUpdateRequest;
 
 class ContactNoteController extends Controller
 {
@@ -24,7 +26,7 @@ class ContactNoteController extends Controller
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response
          */
-        public function store(ContactStoreRequest $request)
+        public function store(ContactNoteStoreRequest $request)
         {
             //
     
@@ -61,11 +63,11 @@ class ContactNoteController extends Controller
          * @param  int  $id
          * @return \Illuminate\Http\Response
          */
-        public function update(ContactUpdateRequest $request, $id)
+        public function update(ContactNoteUpdateRequest $request, $id)
         {
             //
     
-            $newNote =  ContactNote::find($request->id);
+            $newNote =  ContactNote::findorFail($id);
             $newNote->contact_id = $request->contact_id;
             $newNote->note  = $request->note;
             $newNote->update();
